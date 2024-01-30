@@ -22,6 +22,7 @@ app.post("/signin", async (req, res) => {
     const existingUser = await myModel.findOne({
       username: email
     });
+    
 
     if (existingUser) {
       res.status(401).json({
