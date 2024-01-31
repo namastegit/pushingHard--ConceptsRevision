@@ -1,22 +1,26 @@
+
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-             .container{
-                color:rebeccapurple;
-                background-color: rgb(210, 200, 216);
-                margin: 20px;
-                padding: 20px;
-                font-size: 30px;
-             };
-        </style>
-    </head>
-    <body> 
-        <div class="container">
-           hii there
-        </div> <br> <br>
-        <div class="container"> hii there 2 </div>
+<script>
+    function claculateSum() {
+        const num1 = parseInt(document.getElementById("num1").value);
+        const num2 =parseInt(document.getElementById("num2").value);
+        console.log(num1);
+        const ans = num1 + num2;
+        const element = document.getElementById("demoid2");
+        element.innerHTML = ans;
+    }
+</script>
 
+<body>
+    <p>Claculate sum DOM Manipulaton</p>
+    <input id="num1" type="text" placeholder="First"></input> <br><br>
+    <input id="num2" type="text" placeholder="Second"></input> <br><br>
+    <button onclick="claculateSum()"> Claculate Sum</button>
+    <br><br>
+    <p id="demoid2"></p>
 
-    </body>
+</body>
+
 </html>
