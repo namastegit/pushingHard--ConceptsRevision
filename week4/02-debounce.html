@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script>
+let timeout;
+    function debounceCalculateSum() {
+        clearTimeout(timeout);
+         timeout = setTimeout( () => {
+            claculateSum();
+        }, 2000); // 100 milisec 
+    }
+    function claculateSum() { 
+        const num1 = parseInt(document.getElementById("num1").value);
+        const num2 =parseInt(document.getElementById("num2").value);
+        console.log(num1);
+        const ans = num1 + num2;
+        const element = document.getElementById("demoid2");
+        element.innerHTML = ans;
+    }
+</script>
+
+<body>
+    <p>Limmiting Unnecessary calls to backend </p>
+    <input id="num1" oninput="debounceCalculateSum()" type="text" placeholder="First"></input> <br><br>
+    <input id="num2" oninput="debounceCalculateSum()" text" placeholder="Second"></input> <br><br>
+   
+    <br><br>
+    <p id="demoid2"></p>
+
+</body>
+
+</html>
