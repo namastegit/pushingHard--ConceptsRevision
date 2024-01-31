@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script>
+    async function calculateInterest() {
+        const P = parseInt(document.getElementById("principle").value);
+        const R = parseInt(document.getElementById("rate").value);
+        const T = parseInt(document.getElementById("time").value);
+
+        const response = await fetch(`http://localhost:3000/interest/?principle=${P}&rate=${R}&time=${T}`);
+        const answer = await response.json();
+
+        document.getElementById("demo1").innerHTML = answer.result;
+    }
+</script>
+
+<body>
+    <p>You need to first start the node server</p>
+    <input id="principle" type="number" placeholder="Principle"></input>
+    <br>
+    <input id="rate" type="number" placeholder="Rate"></input>
+    <br>
+    <input id="time" type="number" placeholder="Time"></input>
+    <br><br>
+    <button onclick="calculateInterest()">Calculate Interest</button>
+    <p id="demo1"></p>
+</body>
+
+</html>
