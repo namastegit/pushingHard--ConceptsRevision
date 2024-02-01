@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<script>
+    let id = 1;
+
+    function onDone(id) {
+        const parent = document.getElementById(id);
+        parent.children[2].innerHTML = "Done!";
+    }
+
+    function createNew(title, description, id) {
+        const child = document.createElement("div");
+        const parentTitle = document.createElement("div");
+        parentTitle.innerHTML = title;
+        const parentDes = document.createElement("div");
+        parentDes.innerHTML = description;
+        const parentButton = document.createElement("button");
+        parentButton.innerHTML = "Mark as Done";
+        parentButton.setAttribute("onclick", `onDone('${id}')`);
+
+        child.appendChild(parentTitle);
+        child.appendChild(parentDes);
+        child.appendChild(parentButton);
+        child.setAttribute("id", id);
+
+        return child;
+    }
+
+    function addToDo() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const demoContainer = document.getElementById("demo11");
+
+        // Generate a unique id for each todo item
+        const todoid = "todo" + id++;
+
+        const newToDo = createNew(title, description, todoid);
+        demoContainer.appendChild(newToDo);
+
+        // Clear input fields after adding a new todo
+        document.getElementById("title").value = "";
+        document.getElementById("description").value = "";
+    }
+</script>
+
+<body>
+    <input id="title" type="text" placeholder="Title"><br>
+    <input id="description" type="text" placeholder="Description"><br>
+    <button onclick="addToDo()">Add TO DO</button>
+    <br>
+    <div id="demo11"></div>
+</body>
+
+</html>
