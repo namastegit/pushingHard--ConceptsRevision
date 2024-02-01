@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <input id="title" type="text" placeholder="Title"><br>
+    <input id="description" type="text" placeholder="Description"><br>
+    <br>
+    <div id="demo11"></div>
+
+    <script>
+        function createNew(title, description, id) {
+            const child = document.createElement("div");
+            const parentTitle = document.createElement("div");
+            parentTitle.innerHTML = `<strong>Title:</strong> ${title}`;
+            const parentDes = document.createElement("div");
+            parentDes.innerHTML = `<strong>Description:</strong> ${description}`;
+            const parentButton = document.createElement("button");
+            parentButton.innerHTML = "Mark as Done";
+            parentButton.setAttribute("onclick", `onDone('${id}')`);
+
+            child.appendChild(parentTitle);
+            child.appendChild(parentDes);
+            child.appendChild(parentButton);
+            child.setAttribute("id", id);
+
+            return child;
+        }
+
+        async function fetchAndAdd(state) {
+            const parent = document.getElementById("demo11");
+            parent.innerHTML = "";
+
+                for (var i = 0; i < state.todos.length; i++) {
+                    const todo = state.todos[i];
+
+                    // Use createNew function to create elements
+                    const child = createNew(todo.title, todo.description, todo.id);
+
+                    // Append the div to the parent
+                    parent.appendChild(child);
+                
+            }
+        }
+
+        async function fetching() {
+            try {
+                // Make a fetch request to your API endpoint
+                const res = await fetch("https://sum-server.100xdevs.com/todos");
+
+                // Check if the request was successful
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+
+                // Parse the JSON response
+                const json = await res.json();
+
+                // Call the fetchAndAdd function with the retrieved data
+                fetchAndAdd(json);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        // Use setInterval to call the fetching function every 4000 milliseconds (4 seconds)
+        window.setInterval(fetching, 4000);
+    </script>
+</body>
+
+</html>
