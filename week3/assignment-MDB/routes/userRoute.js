@@ -54,6 +54,29 @@ app.post("/purchasecourse/:courseId", userSignInMiddleware, async (req, res) => 
     }
 });
 
+app.get("/getcourses", userSignInMiddleware, async (req, res) => {
+    try {
+        const user = await User.findOne({
+            email: req.headers.email
+        });
+
+        const allcourses = await Course.find({
+            _id: {
+                "$in": user.purchasedCourses
+            }
+        });
+
+        res.json({
+            courses: allcourses
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: "Internal Server Error"
+        });
+    }
+});
+
 app.listen(3001, () => {
     console.log("http://localhost:3001");
 });
