@@ -32,11 +32,11 @@ app.post("/usersignin", userSignInMiddleware, async (req, res) => {
 
 app.post("/purchasecourse/:courseId", userSignInMiddleware, async (req, res) => {
     const courseId = req.params.courseId;
-    const email = req.headers.email;
+    const password = req.headers.password;
 
     try {
         await User.updateOne({
-            email,
+            password,
         }, {
             $push: {
                 purchasedCourses: courseId
@@ -57,7 +57,7 @@ app.post("/purchasecourse/:courseId", userSignInMiddleware, async (req, res) => 
 app.get("/getcourses", userSignInMiddleware, async (req, res) => {
     try {
         const user = await User.findOne({
-            email: req.headers.email
+            password: req.headers.password
         });
 
         const allcourses = await Course.find({
