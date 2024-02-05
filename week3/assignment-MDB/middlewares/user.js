@@ -1,12 +1,12 @@
 const { User } = require("../database/index");
 
 async function userSignInMiddleware(req, res, next) {
-    const username = req.headers.username;
+    const email = req.headers.email;
     const password = req.headers.password;
 
     try {
         const user = await User.findOne({
-            username: username,
+            email: email,
             password: password
         });
 
@@ -26,16 +26,16 @@ async function userSignInMiddleware(req, res, next) {
 }
 
 async function userSignUpMiddleware(req, res, next) {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
 
     try {
         const user = await User.findOne({
-            username: username,
+            email: email,
             password: password
         });
 
-        if (admin) {
+        if (user) {
             res.status(403).json({
                 msg: "User already exists"
             });
@@ -50,4 +50,4 @@ async function userSignUpMiddleware(req, res, next) {
     }
 }
 
-module.exports = { adminSignInMiddleware, adminSignUpMiddleware };
+module.exports = { userSignInMiddleware, userSignUpMiddleware };
