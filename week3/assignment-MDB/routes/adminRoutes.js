@@ -35,6 +35,35 @@ app.post("/signin", adminSignInMiddleware, (req, res) => {
     });
 });
 
+app.post("/courses", adminSignInMiddleware, async(req, res) => 
+{
+    try{
+    const title = req.body.title;
+    const price = req.body.price;
+
+   const newCourse = await Course.create({
+        title,
+        price,
+    });
+    res.json({
+        msg : "Course created successfully", courseId : newCourse._id
+    });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({
+        msg: "Internal Server Error"
+    });
+}
+});
+
+app.get("/allcourses", adminSignInMiddleware, async (req, res) => {
+    const allcourses = await Course.find({});
+    res.json({
+        msg : allcourses
+    });
+
+});
+
 app.listen(3000, () => {
     console.log("http://localhost:3000");
 });

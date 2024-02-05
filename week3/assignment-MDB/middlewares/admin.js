@@ -1,8 +1,8 @@
 const { Admin } = require("../database/index");
 
 async function adminSignInMiddleware(req, res, next) {
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.headers.username;
+    const password = req.headers.password;
 
     try {
         const admin = await Admin.findOne({
