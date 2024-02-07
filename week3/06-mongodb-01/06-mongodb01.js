@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/usernewapp");
+
 
 // Define the model outside of the route handler
 const myModel = mongoose.model("Userstable", {
