@@ -1,7 +1,7 @@
 // Ensure that you have required mongoose in this file
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/Byju", {
+mongoose.connect("mongodb+srv://", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
