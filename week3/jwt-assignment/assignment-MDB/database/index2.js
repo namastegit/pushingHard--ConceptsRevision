@@ -1,22 +1,23 @@
+// Ensure that you have required mongoose in this file
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/ByjusDatabase", {
+mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/Byju", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 const adminSchema = mongoose.Schema({
   username: String,
-  password: Number,
+  password: String, // Change to String for password and consider using bcrypt for hashing
 });
 
 const userSchema = mongoose.Schema({
   username: String,
-  password: Number,
-  purchasedCourses: {
+  password: String, // Change to String for password and consider using bcrypt for hashing
+  purchasedCourses: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Courses",
-  },
+  }],
 });
 
 const courseSchema = mongoose.Schema({

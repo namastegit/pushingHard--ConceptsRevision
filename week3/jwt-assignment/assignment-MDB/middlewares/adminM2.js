@@ -1,38 +1,50 @@
-User
-
---const express = require("express");
 const jwt = require("jsonwebtoken");
+const express = require("express");
 const { JWT_SECRETS } = require("../config2");
-const app = express();
-
-app.use(express.json());
+const { Admin, Courses } = require("../database/index2");
 
 
-async function adminSignupMiddleware(req, res, next) {
-    const username = req.body.username;
-    const password = req.body.password;
+async function adminSignUpMiddleware(req, res, next) {
+  const username = req.body.username;
+  const password = req.body.password;
 
-    const token = req.headers.token;
-    const words = token.split(" ");
-    const jwtToken = words[1];
-    
-    try{
-const decode = await jwt.verify(jwtToken, JWT_SECRETS);
-const decodedValue =  await decode.json();
-
-if(decodedValue.username){
-    next();
+  try {
+    const userExists = await Admin.findOne({ username: username });
+    if (!userExists) {
+      next();
+    } else {
+      res.json({
+        msg: "User Already exists"
+      });
+    }
+  } catch (error) {
+    console.error(error);
     res.json({
-        msg : "Username verified"
+      msg: "User not created"
     });
+  }
 }
 
-    }catch{}
+async function adminSigninMiddleware(req, res, next) {
+  const username = req.headers.username;
+  const password = req.headers.password;
+  const token = req.headers.token;
 
-    const AdminFound = await Admin.findOne({
-        username:username,
-        password:password
+  try {
+    const decoded = await jwt.verify(token, JWT_SECRETS);
+    if (decoded.username) {
+      next();
+    } else {
+      res.json({
+        msg: "Unauthorized Access"
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.json({
+      msg: "Unauthorized Access"
     });
-
-    if
+  }
 }
+
+module.exports = { adminSignUpMiddleware, adminSigninMiddleware };

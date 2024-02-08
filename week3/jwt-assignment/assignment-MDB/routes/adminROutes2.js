@@ -1,13 +1,13 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const { Admin, Courses } = require("../database");  // Update the path accordingly
-const { JWT_SECRETS } = require("../config2");    // Update the path accordingly
-const { adminSignupMiddleware, adminSigninMiddleware } = require("../middlewares/adminM2");  // Update the path accordingly
+const { Admin, Courses } = require("../database/index2");
+const { JWT_SECRETS } = require("../config2");
+const { adminSignUpMiddleware, adminSigninMiddleware } = require("../middlewares/adminM2");
 
 const app = express();
 app.use(express.json());
 
-app.post("/signup", adminSignupMiddleware, async (req, res) => {
+app.post("/signup", adminSignUpMiddleware, async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -22,22 +22,21 @@ app.post("/signup", adminSignupMiddleware, async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(403).json({
+    res.status(404).json({
       msg: "Unauthorized access",
     });
   }
 });
 
 app.post("/signin", async (req, res) => {
-  const username = req.headers.username;
-  const password = req.headers.password;
+  const username = req.body.username;
+  const password = req.body.password;
 
   try {
     const token = await jwt.sign({ username }, JWT_SECRETS);
     res.json({
       msg: token
     });
-
   } catch (error) {
     console.error(error);
     res.status(403).json({
@@ -48,7 +47,7 @@ app.post("/signin", async (req, res) => {
 
 app.post("/courses", adminSigninMiddleware, async (req, res) => {
   const title = req.body.title;
-  const price = req.headers.price;
+  const price = req.body.price; // Corrected from req.headers.price
 
   try {
     const newCourse = await Courses.create({
@@ -73,7 +72,6 @@ app.get("/getAllCourses", async (req, res) => {
     res.json({
       msg: allCourses
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({
