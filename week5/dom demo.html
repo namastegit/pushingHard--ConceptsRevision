@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        let state = {
+            counter: 0
+        };
+
+        function changeCounterFun() {
+            state.counter++;
+            reRender();
+        }
+
+        function reRender() {
+            const counterDiv = document.getElementById("btn");
+            counterDiv.innerHTML = `Counter ${state.counter}`;
+        }
+
+        function componentFun() {
+            const counter = document.getElementById("btn").innerHTML;
+            const realCou = counter.split(" ")[1];
+            let finalC = document.createElement("button");
+            finalC.textContent = "Increment Counter";
+            finalC.setAttribute("onclick", "changeCounterFun()");
+            document.body.appendChild(finalC);
+        }
+
+        window.onload = function () {
+            reRender();
+            componentFun();
+        }
+    </script>
+    <body>
+        <div id="btn">Counter 0</div>
+    </body>
+</html>
