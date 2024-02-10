@@ -1,38 +1,38 @@
-<!-- revising the starting concepts of the reacrt -->
-
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Counter Button</title>
+</head>
+<body>
+    <div id="buttonParent"></div>
+
     <script>
         let state = {
-            counter: 0
+            count: 0
         };
 
-
-        function changeCounterFun() {
-            state.counter++;
-            reRender();
+        function incCounter() {
+            state.count++;
+            buttonRender();
         }
 
-        function reRender() {
-            const counterDiv = document.getElementById("btn");
-            counterDiv.innerHTML = `Counter ${state.counter}`;
+        function buttonRender() {
+            const parent = document.getElementById("buttonParent");
+            parent.innerHTML = ""; // Clear existing content
+
+            const component = buttonComponent(state.count);
+            parent.appendChild(component);
         }
 
-        function componentFun() {
-            const counter = document.getElementById("btn").innerHTML;
-            const realCou = counter.split(" ")[1];
-            let finalC = document.createElement("button");
-            finalC.textContent = "Increment Counter";
-            finalC.setAttribute("onclick", "changeCounterFun()");
-            document.body.appendChild(finalC);
+        function buttonComponent(count) {
+            const button = document.createElement("button");
+            button.innerHTML = `Counter ${count}`;
+            button.setAttribute("onclick", "incCounter()");
+            return button;
         }
 
-        window.onload = function () {
-            reRender();
-            componentFun();
-        }
+        // Initial rendering when the page loads
+        buttonRender();
     </script>
-    <body>
-        <div id="btn">Counter 0</div>
-    </body>
+</body>
 </html>
