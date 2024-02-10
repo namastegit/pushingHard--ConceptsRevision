@@ -18,7 +18,7 @@
 
         function buttonRender() {
             const parent = document.getElementById("buttonParent");
-            parent.innerHTML = ""; // Clear existing content
+            parent.innerHTML = ""; 
 
             const component = buttonComponent(state.count);
             console.log(component);
@@ -32,7 +32,7 @@
             return button;
         }
 
-        // Initial rendering when the page loads
+   
         buttonRender();
     </script>
 </body>
