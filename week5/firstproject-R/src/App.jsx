@@ -2,8 +2,8 @@
 
 // import './App.css'
 
-// function App() {
-//   const [count, setCount] = useState(0)
+// function App() {  
+//   const [count, setCount] = useState(0) //<-- zerto is - state variable 
 //   function incCounter() { 
 //     setCount(count + 1);
 //    }
@@ -18,40 +18,79 @@
 // }
 
 // export default App
+// __________________________________________________________________________
 
-import { useState } from 'react';
+// import { useState } from 'react';
+// import './App.css';
+
+// function App() {
+//   const [count, setCount] = useState(0);
+ 
+//   return (
+//     <div>
+//       <Button1 count={count} setCount={setCount} />
+//           {/* compnent 1 */}
+//       <Button1 count={count + 2} setCount={setCount}></Button1> 
+//       {/* compnent 2 */}
+//       <Button1 count={count * 100} setCount={setCount}></Button1>
+//           {/* compnent 3 */}
+//       <Button1 count={count / 100} setCount={setCount}></Button1>
+//           {/* compnent 4 */}
+
+
+
+//     </div>
+//   );
+// }
+// //props parametres
+// function Button1(props) {
+//   function incCounter() { 
+//     props.setCount(props.count + 1);
+//   }
+
+//   return (
+//     <button onClick={incCounter}>
+//       Counter {props.count}
+//     </button>
+//   );
+// }
+
+// export default App;
+
+// ___________________________________________________________________________________
+// TODOS
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
- 
+  const [todos, setTodos] = useState([ //state variables
+    {
+      title: "aa",
+      description: "bb"
+    },
+    {
+      title: "cc",
+      description: "dd"
+    }
+  ]);
+
   return (
     <div>
-      <Button1 count={count} setCount={setCount} />
-          {/* compnent 1 */}
-      <Button1 count={count + 2} setCount={setCount}></Button1> 
-      {/* compnent 2 */}
-      <Button1 count={count * 100} setCount={setCount}></Button1>
-          {/* compnent 3 */}
-      <Button1 count={count / 100} setCount={setCount}></Button1>
-          {/* compnent 4 */}
-
-
-
+      {todos.map((todo, index) => ( // rendering
+        <Todo key={index} title={todo.title} description={todo.description} />
+      ))}
     </div>
   );
 }
-//props parametres
-function Button1(props) {
-  function incCounter() { 
-    props.setCount(props.count + 1);
-  }
 
+function Todo(props) { // component
   return (
-    <button onClick={incCounter}>
-      Counter {props.count}
-    </button>
+    <>
+      <h1>{props.title}</h1>
+      <h2>{props.description}</h2>
+    </>
   );
 }
 
 export default App;
+
