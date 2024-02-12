@@ -61,8 +61,9 @@
 // TODOS
 import React, { useState } from 'react';
 import './App.css';
-
+let count = 0;
 function App() {
+ 
   const [todos, setTodos] = useState([ //state variables
     {
       title: "aa",
@@ -73,13 +74,24 @@ function App() {
       description: "dd"
     }
   ]);
+function addTODOS(){
+  count++;
+  setTodos([...todos, {
+    title:"new",
+    description:`todo ${count}`
+  }])
+}
+  return (<>
 
-  return (
+  <div> 
+    <button onClick={addTODOS}>ADD</button>
+  </div>
     <div>
       {todos.map((todo, index) => ( // rendering
         <Todo key={index} title={todo.title} description={todo.description} />
       ))}
     </div>
+    </>
   );
 }
 
