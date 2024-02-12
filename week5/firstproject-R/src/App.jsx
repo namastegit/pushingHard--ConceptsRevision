@@ -10,7 +10,7 @@ function App() {
     </div>
   );
 }
-
+//props parametres
 function Button1(props) {
   function incCounter() { 
     props.setCount(props.count + 1);
