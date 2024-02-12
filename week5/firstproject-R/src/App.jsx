@@ -15,6 +15,8 @@ function App() {
       <Button1 count={count / 100} setCount={setCount}></Button1>
           {/* compnent 4 */}
 
+
+
     </div>
   );
 }
