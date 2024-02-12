@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO List</title>
+  <style>
+    /* CSS styles */
+  </style>
+</head>
+<body>
+  <div id="todoList">
+    <!-- TODO items will be added here dynamically -->
+  </div>
+  <div>
+    <button id="addTodo">ADD</button>
+  </div>
+
+  <script>
+    // Initialize a count for generating unique IDs
+    let count = 0;
+
+    // Function to add a new TODO item
+    function addTodo() {
+      count++;
+
+      // Create a new TODO object
+      const newTodo = {
+        title: "New",
+        description: `TODO ${count}`
+      };
+
+      // Create DOM elements for the new TODO item
+      const todoContainer = document.createElement('div');
+      const titleElement = document.createElement('h1');
+      const descriptionElement = document.createElement('h2');
+
+      // Set the text content of the title and description elements
+      titleElement.textContent = newTodo.title;
+      descriptionElement.textContent = newTodo.description;
+
+      // Append the title and description elements to the todo container
+      todoContainer.appendChild(titleElement);
+      todoContainer.appendChild(descriptionElement);
+
+      // Append the todo container to the todo list
+      document.getElementById('todoList').appendChild(todoContainer);
+    }
+
+    // Add event listener to the "ADD" button
+    document.getElementById('addTodo').addEventListener('click', addTodo);
+  </script>
+</body>
+</html>
