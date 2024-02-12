@@ -1,21 +1,26 @@
-import { useState } from 'react'
-
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-  function incCounter() { 
-    setCount(count + 1);
-   }
+  const [count, setCount] = useState(0);
+ 
   return (
- <div>
-<button onClick={incCounter}>
-          count is {count}
-        </button>
- </div>
-        
-      
-  )
+    <div>
+      <Button1 count={count} setCount={setCount} />
+    </div>
+  );
 }
 
-export default App
+function Button1(props) {
+  function incCounter() { 
+    props.setCount(props.count + 1);
+  }
+
+  return (
+    <button onClick={incCounter}>
+      Counter {props.count}
+    </button>
+  );
+}
+
+export default App;
