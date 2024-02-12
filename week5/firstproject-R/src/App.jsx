@@ -7,8 +7,14 @@ function App() {
   return (
     <div>
       <Button1 count={count} setCount={setCount} />
-      <Button1 count={count + 2} setCount={setCount}></Button1>
+          {/* compnent 1 */}
+      <Button1 count={count + 2} setCount={setCount}></Button1> 
+      {/* compnent 2 */}
       <Button1 count={count * 100} setCount={setCount}></Button1>
+          {/* compnent 3 */}
+      <Button1 count={count / 100} setCount={setCount}></Button1>
+          {/* compnent 4 */}
+
     </div>
   );
 }
