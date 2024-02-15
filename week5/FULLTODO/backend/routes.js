@@ -2,6 +2,14 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-app.post("/", async(req, res) => {
+app.post("/addtodo", async(req, res) => {
 
-}); //git 
+});
+
+app.get("/alltodos", async(req, res) => {
+
+});
+
+app.put("/completed", async(req, res) => {
+
+});
