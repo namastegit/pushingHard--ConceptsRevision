@@ -7,5 +7,5 @@ It has following features::
 - anyone can mark Todos as done
 
 // initialize a node project
-// put a.package.json(npm init)
+// put a.package.json(npm init inside backend)
 //install express- (npm install express)
