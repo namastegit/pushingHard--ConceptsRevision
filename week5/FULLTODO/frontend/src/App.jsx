@@ -1,18 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { CreateTodo } from './components/CreateTodo'
 import { Todos } from './components/todos'
 
-function App() {
+
+async function App() {
+  const [todos, setTodos] =useState([]);
+  const Allofthem = await fetch("http://localhost:3000/alltodos");
+  const finalAll = await Allofthem.json();
+  setTodos(finalAll.todos);
 return (
     <>
     <div>
 <CreateTodo/>
-    </div>
-    <div>
-      <Todos todos={[{
+      <Todos  todos={[{
         title : "TODO1",
         description : "GO to gym daily",
         completed : false
