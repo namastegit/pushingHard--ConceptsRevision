@@ -4,11 +4,14 @@ import { CreateTodo } from './components/CreateTodo'
 import { Todos } from './components/todos'
 
 
-async function App() {
+ function App() {
   const [todos, setTodos] =useState([]);
-  const Allofthem = await fetch("http://localhost:3000/alltodos");
-  const finalAll = await Allofthem.json();
-  setTodos(finalAll.todos);
+ fetch("http://localhost:3000/alltodos")
+.then(async (res) => {
+const json = await res.json();
+setTodos(json.todos);
+})
+  
 return (
     <>
     <div>
