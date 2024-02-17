@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { CreateTodo } from './components/CreateTodo'
-import { Todos } from './components/todos'
+import  Todos  from './components/todos'
 
 
  function App() {
@@ -9,19 +9,15 @@ import { Todos } from './components/todos'
  fetch("http://localhost:3000/alltodos")
 .then(async (res) => {
 const json = await res.json();
-setTodos(json.todos);
+console.log(json);
+setTodos(json.alltodos);
 })
   
 return (
     <>
     <div>
 <CreateTodo/>
-      <Todos  todos={[{
-        title : "TODO1",
-        description : "GO to gym daily",
-        completed : false
-      }
-      ]}></Todos>
+      <Todos  todos={todos}></Todos>
     </div>
     </>
   )
