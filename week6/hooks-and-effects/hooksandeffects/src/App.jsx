@@ -209,6 +209,12 @@
 // sum1==sum2
 // answer :: false --> answer is false even they are same --
 // because -- referencially not equal 
+
+// object
+// a={}
+// b={}
+// a==b 
+// answer:: false 
 // -----------------------------------------------------
 
 
