@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "You have to create a simple React App which has a reusable Card Component which has the following\r  - Ability to pass in props to the Component\r  - The Card must show a person's\r     - Name\r     - A short description\r     - LinkedIn, Twitter and other Social Media Handle buttons\r     - Interests Section\r  - You can assume that this is kind of an e-business card and feel free to put in your creativity\r  - Additional & Slightly advanced:\r     - Create a page where you can add these kind of Cards by taking input from the user\r     - Create a backend server where these cards get stored in a DB and can handle basic CRUD operations\r     - Give the feature to perform CRUD operations from the frontend (Can be restricted to the admin only as well)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0",
+    "node": "^21.6.2",
+    "zod": "^3.22.4"
+  }
+}
