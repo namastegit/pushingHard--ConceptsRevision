@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://net/carduser");
+mongoose.connect("mongodb+srv://.net/carduser");
 
 const userSchema = mongoose.Schema({
     id : Number,
