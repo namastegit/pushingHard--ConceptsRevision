@@ -1,12 +1,15 @@
 import { RecoilRoot } from 'recoil';
 import { ShowallTodos } from "./components/showall";
+import { CreateOne } from './components/createTodo';
 
 function App() {
     return (
-      <RecoilRoot>
-       
+      <><RecoilRoot>
+      <CreateOne></CreateOne>
+      
         <ShowallTodos />
       </RecoilRoot>
+      </>
     );
 }
 

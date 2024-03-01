@@ -1,20 +1,17 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/TodoAppRevision2");
-
-const userSchema = mongoose.Schema({
-    username: String,
-    password: String,
-});
+mongoose.connect("mongodb+srv://betweenthree21:dd3EI4DTIcYCj4A0@cluster0.svmm229.mongodb.net/TodoAppRevision");
 
 const todoschema = mongoose.Schema({
     title: String,
-    description: String
+    description: String,
+    isDone: Boolean
 });
 
-const USER = mongoose.model("USER", userSchema);
+
+
 const TODO = mongoose.model("TODO", todoschema);
 
 module.exports = {
-    USER: USER,
+
     TODO: TODO
 };

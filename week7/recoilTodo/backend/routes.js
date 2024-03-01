@@ -1,9 +1,5 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
-const { USER, TODO } = require("./db");
-const { JWT_SECRET } = require("./config");
-const SigninMiddleware = require("./middlewares");
-const usernamezodSchema = require("./types");
+const {  TODO } = require("./db");
 const cors = require("cors");
 
 const app = express();
@@ -15,51 +11,13 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// app.post("/usersignup", async (req, res) => {
-//     const { username, password } = req.body;
-//     try {
-//         const existingUser = await USER.findOne({ username });
-//         if (existingUser) {
-//             return res.status(503).json({ msg: "User already exists" });
-//         }
-//         const newUser = await USER.create({ username, password });
-//         res.status(200).json({ msg: newUser });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ msg: "Server Error" });
-//     }
-// });
-
-// app.post("/signin", async (req, res) => {
-//     const { username, password } = req.body;
-//     try {
-//         // Validate username and password using Zod schema
-//         const zodValidation = usernamezodSchema.safeParse({ username, password });
-//         if (!zodValidation.success) {
-//             return res.status(400).json({ msg: "Invalid username or password format" });
-//         }
-
-//         // Check if the user exists in the database
-//         const existingUser = await USER.findOne({ username, password });
-//         if (!existingUser) {
-//             return res.status(401).json({ msg: "Invalid credentials" });
-//         }
-
-//         // Create and send JWT token upon successful signin
-//         const token = jwt.sign({ username }, JWT_SECRET);
-//         res.status(200).json({ token });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ msg: "Server Error" });
-//     }
-// });
-
 app.post("/newtodo", async (req, res) => {
     const { title, description } = req.body;
     try {
         const newTodo = await TODO.create({
             title,
             description,
+            isDone:false
         });
         res.json({ msg: newTodo });
     } catch (err) {
@@ -72,6 +30,45 @@ app.get("/todos", async (req, res) => {
     try {
         const allTodos = await TODO.find({});
         res.json({ todos: allTodos });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "Server Error" });
+    }
+});
+
+
+
+app.put("/done", async (req, res) => {
+    const id = req.body.id;
+
+    try {
+        const updatedTodo = await TODO.findOneAndUpdate(
+            { _id: id },
+            { isDone: true },
+            { new: true } // returning updated todo
+        );
+
+        if (updatedTodo) {
+            res.json({ msg: "Todo marked as done", todo: updatedTodo });
+        } else {
+            res.status(404).json({ msg: "Todo not found" });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "Server Error" });
+    }
+});
+app.delete("/delete", async (req, res) => {
+    const id = req.body.id;
+
+    try {
+        const deletedTodo = await TODO.findOneAndDelete({ _id: id });
+
+        if (deletedTodo) {
+            res.json({ msg: "Todo deleted successfully", todo: deletedTodo });
+        } else {
+            res.status(404).json({ msg: "Todo not found" });
+        }
     } catch (err) {
         console.error(err);
         res.status(500).json({ msg: "Server Error" });
