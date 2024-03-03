@@ -1,11 +1,11 @@
 import { RecoilRoot } from "recoil";
-import { CreateAppBar } from "./components/appbar";
+import { Create } from "./components/appbar";
 
 function App() {
 return (
   <>
   <RecoilRoot>
-  <CreateAppBar></CreateAppBar>
+<Create></Create>
 </RecoilRoot>
   </>
 )
