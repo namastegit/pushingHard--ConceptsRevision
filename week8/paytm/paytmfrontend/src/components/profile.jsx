@@ -1,0 +1,7 @@
+function ShowProfileNow() {
+    return (
+        <>
+        Profile
+        </>
+    )
+}
