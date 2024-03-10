@@ -50,7 +50,7 @@ app.post("/signup", async (req, res) => {
                 msg: "New User Created Successfully !!",
                 msg2: newUser,
                 msg3: "Token created Successfully",
-                msg4: token,
+                token : token,
                 msg5: account1
             });
         }
@@ -140,6 +140,7 @@ app.get("/filtre", async (req, res) => {
 
         res.json({
             users: userfiltering.map((filteredUser) => ({
+                key:filteredUser._id,
                 username: filteredUser.username,
                 firstname: filteredUser.firstname,
                 lastname: filteredUser.lastname,
@@ -160,6 +161,14 @@ app.get("/balance", authMiddleware, async (req, res) => {
 
     res.json({
         balance: account.balance
+    })
+});
+
+app.get("/getallusers", async (req, res) => {
+    const allUsers = await User.find({});
+
+    res.json({
+        msgg: allUsers
     })
 });
 app.post("/transfer", authMiddleware, async (req, res) => {

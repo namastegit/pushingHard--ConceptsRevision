@@ -91,11 +91,19 @@ function App2() {
     function gotosignin() {
       navigate("/");
     }
-  
+   
+     
+    
+      function gotoallusers() {
+        navigate("/allusers");
+      }
     return (
       <>
-        <button onClick={gotosignin}>Go to Sign Up</button>
+        <button onClick={gotosignin}>Go to Sign Up</button><br>
+        </br>
+        <br></br>
+        <button onClick={gotoallusers}>See All Users</button>
       </>
     );
-  }
+    }
   
