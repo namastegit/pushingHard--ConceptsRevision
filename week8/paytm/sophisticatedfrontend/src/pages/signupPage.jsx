@@ -4,13 +4,15 @@ import { Heading } from "../components/headingComponent";
 import { InputBox } from "../components/inputBox";
 import { Sub_heading } from "../components/subHeading";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+   
+const navigate = useNavigate();
     return <div className="bg-slate-300 h-screen flex justify-center">
  <div className="flex flex-col justify-center">
  <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4 ">
@@ -46,11 +48,12 @@ export function Signup() {
 
             } catch (error) {
                 console.error("Error making signup request:", error);
-                // Handle the error (e.g., display an error message to the user)
+             
             }
-            
+            navigate("/dashboard");
     
             }
+
     }></Button>
 </div>
 </div>
