@@ -1,0 +1,21 @@
+In week 13, I have built a react project - QuillCraft (Blogging Website - simple).
+
+
+Tech::
+ Backend -> Cloudflare, neonDB(Postgress), Prisma(ORM), Hono(IN place of express), NPM packages(Self Deployed - No Monorepo used)
+ Frontend - React, Tailwind CSS.
+
+ Deployment:: 
+ Git Hub -
+ 
+  https://github.com/namastegit/quillCraft
+
+
+
+
+
+ Vercel - [Live] ::
+
+ Link ::  
+ 
+   https://quill-craft.vercel.app/
