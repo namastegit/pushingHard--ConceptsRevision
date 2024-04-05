@@ -18,9 +18,7 @@ export default function RootLayout({
     <html lang="en">
 
       <body className={inter.className}>
-        <div className="border-b text-center text-2xl font-bold">
-          App bar
-        </div>
+        
         {children}</body>
     </html>
   );
