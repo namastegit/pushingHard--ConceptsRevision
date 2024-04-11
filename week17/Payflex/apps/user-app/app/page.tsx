@@ -10,3 +10,10 @@ export default function Page(): JSX.Element {
    </div>
   );
 }
+
+
+// Here, you're passing three props to the Appbar:
+
+// onSignin: The signIn function from next-auth, which is a method to trigger the sign-in flow.
+// onSignout: The signOut function from next-auth, which is a method to log the user out.
+// user: This is set to session.data?.user. The ? is optional chaining, meaning it'll try to access user on data if data exists; otherwise, it evaluates to undefined. Essentially, if there's a logged-in session, this prop will pass the user's information to the Appbar. If there's no session, user will be undefined, indicating no user is logged in.

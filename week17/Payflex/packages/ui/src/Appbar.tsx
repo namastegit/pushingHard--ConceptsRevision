@@ -23,3 +23,11 @@ export const Appbar = ({
         </div>
     </div>
 }
+
+
+// user: An optional object which may have a name property of type string or null. This is used to determine if the user is logged in or not. If the user object exists and potentially has a name, we assume the user is logged in.
+// onSignin: A function that is supposed to be called when the user wants to log in.
+// onSignout: A function that is supposed to be called when the user wants to log out.
+{/* <Button onClick={user ? onSignout : onSignin}>{user ? "Logout" : "Login"}</Button>
+If user is truthy (indicating a user is logged in), the button's onClick will be set to onSignout, and its children (the text inside the button) will be "Logout".
+If user is falsy (indicating no user is logged in), the button's onClick will be set to onSignin, and its children will be "Login". */}
