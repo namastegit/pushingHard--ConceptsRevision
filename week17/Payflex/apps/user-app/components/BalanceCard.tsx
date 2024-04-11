@@ -18,7 +18,7 @@ export const BalanceCard = ({amount, locked}: {
                 Total Locked Balance
             </div>
             <div>
-                {locked } INR
+                {locked  } INR
             </div>
         </div>
         <div className="flex justify-between border-b border-slate-300 py-2">
