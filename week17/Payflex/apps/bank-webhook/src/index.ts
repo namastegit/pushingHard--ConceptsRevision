@@ -19,7 +19,7 @@ app.post("/hdfcWebhook", async (req, res) => {
 
     try {
         await db.$transaction([
-            db.balance.update({
+            db.balance.updateMany({
                 where: {
                     userId: Number(paymentInformation.userId)
                 },
@@ -30,7 +30,7 @@ app.post("/hdfcWebhook", async (req, res) => {
                     }
                 }
             }),
-            db.onRampTransaction.update({
+            db.onRampTransaction.updateMany({
                 where: {
                     token: paymentInformation.token
                 }, 
@@ -53,8 +53,6 @@ app.post("/hdfcWebhook", async (req, res) => {
 })
 
 app.listen(3003);
-
-
 
 //
     // const balance_now = db.balance.findFirst({
